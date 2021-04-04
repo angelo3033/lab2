@@ -6,6 +6,23 @@ import {
   TextInput,
   View, 
   Image} from 'react-native';
+import Body from './app/components/body/Body';
+import Message from './app/components/message/Message';
+
+const provincias = [
+  {
+    id: 1,
+    name: 'Arequipa',
+  },
+  {
+    id: 2,
+    name: 'Puno',
+  },
+  {
+    id: 3,
+    name: 'Cuzco',
+  },
+];
 
 export default class App extends Component{
   constructor(props) {
@@ -17,6 +34,7 @@ export default class App extends Component{
   }
 
   changeTextInput = text =>{
+    console.log(text)
     this.setState({textValue: text});
   };
 
@@ -29,11 +47,12 @@ export default class App extends Component{
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.text}>
-          <Text> Hola Amigos </Text>
-        </View>
 
-        <Image style={styles.image} source={require('./img/logo.png')}/>
+        <Message/>
+
+        <View style={styles.text}>
+          <Text> Ingrese su edad </Text>
+        </View>
 
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
@@ -41,14 +60,17 @@ export default class App extends Component{
           value={this.state.textValue}
         />
 
-        <TouchableOpacity style={styles.button} onPress={this.onPress}>
-          <Text> Touch here </Text>
-        </TouchableOpacity>
+        <Body textBody={'Texto en Body'} onBodyPress={this.onPress} />
+
         <View style={[styles.countContainer]}>
-          <Text style={[styles.countText]}>
-            {this.state.count}  
-          </Text>
+          <Text style={[styles.countText]}>{this.state.count}</Text>  
         </View>
+
+        {provincias.map(item => (
+          <View>
+            <Text>{item.name}</Text>
+          </View>
+        ))}
       </View>
     );
   }
@@ -62,18 +84,6 @@ const styles = StyleSheet.create({
   },
   text: {
     alignItems: 'center',
-    padding: 10,
-  },
-  image: {
-    marginLeft: 26,
-    width: 300,
-    height: 300,
-  },
-
-  button: {
-    top: 10,
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
     padding: 10,
   },
   countContainer: {
