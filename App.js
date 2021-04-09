@@ -7,6 +7,8 @@ import {
   View, 
   Image} from 'react-native';
 import Body from './app/components/body/Body';
+import ConexionFetch from './app/components/conexionFetch/ConexionFetch';
+import OurFlatList from './app/components/ourFlatList/OurFlatList';
 import Message from './app/components/message/Message';
 
 const provincias = [
@@ -45,8 +47,13 @@ export default class App extends Component{
   }
 
   render() {
-    return (
-      <View style={styles.container}>
+    return <ConexionFetch/>;
+
+      /*<View style={styles.container}>
+        <OurFlatList />
+      </View>*/
+
+      /*<View style={styles.container}>
 
         <Message/>
 
@@ -71,8 +78,7 @@ export default class App extends Component{
             <Text>{item.name}</Text>
           </View>
         ))}
-      </View>
-    );
+      </View>*/
   }
 }
 
